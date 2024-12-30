@@ -1,7 +1,7 @@
 {
   "name": "back-acervo-djb",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "index.ts",
   "scripts": {
     "dev": "tsnd --clear --respawn --rs src/index.ts"
   },
@@ -10,6 +10,7 @@
   "license": "ISC",
   "description": "",
   "devDependencies": {
+    "@types/cors": "^2.8.17",
     "@types/express": "^5.0.0",
     "ts-node-dev": "^2.0.0",
     "typescript": "^5.7.2"

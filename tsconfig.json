@@ -1,11 +1,14 @@
 {
   "compilerOptions": {
     "target": "es2016",
-    "module": "commonjs",
+    "module": "CommonJS",
     "typeRoots": ["node_modules/@types"],
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "strict": true,
+    "noEmit": true,
+    "moduleResolution": "node",
+    "allowImportingTsExtensions": true,
     "exactOptionalPropertyTypes": true,
     "skipLibCheck": true
   },
