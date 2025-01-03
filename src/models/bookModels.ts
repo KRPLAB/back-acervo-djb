@@ -27,9 +27,15 @@ export async function getListaLivros() {
 export async function getLivroPorID(id: string) {
     const database = client.db("acervo-djb");
     const colecao = database.collection("livros");
-    console.log(id);
     const livro = colecao.findOne({ _id: new ObjectId(id) });
     return livro;
+}
+
+export async function atualizaCapa(id: string, livro: any) {
+    const database = client.db("acervo-djb");
+    const colecao = database.collection("livros");
+    const objID = ObjectId.createFromHexString(id);
+    return colecao.updateOne({_id: new ObjectId(objID)}, {$set: livro});
 }
 
 initDatabase();
