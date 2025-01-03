@@ -1,11 +1,16 @@
 import express from "express";
 import cors from "cors";
-import { listarLivros, obterLivro } from "../controllers/bookControlers.ts";
+import multer from "multer";
+import { listarLivros, obterLivro, atualizarCapa } from "../controllers/bookControlers.ts";
 
 const corsOptions = {
-    origin: "http://localhost:8000",
+    origin: "http://localhost:5173",
     optionsSuccessStatus: 200
 }
+
+const upload = multer({
+    dest: "./uploads"
+});
 
 export const bookRoutes = (app: any) => {
     // Habilita o parsing de JSON no corpo das requisições
@@ -22,4 +27,7 @@ export const bookRoutes = (app: any) => {
 
     // Rota para obter um unico livro
     app.get("/livros/:id", obterLivro);
+
+    // Rota para upload de imagens de livro (assumindo uma única imagem chamada "imagem")
+    app.put("/uploads/:id", upload.single("imagem"), atualizarCapa);
 }
