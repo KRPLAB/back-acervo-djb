@@ -1,7 +1,7 @@
 import express from "express";
 import cors from "cors";
 import multer from "multer";
-import { listarLivros, obterLivro, atualizarCapa } from "../controllers/bookControlers.ts";
+import { listarLivros, obterLivro, atualizarCapa, removerLivro, adicionarLivro } from "../controllers/bookControlers.ts";
 
 const corsOptions = {
     origin: "http://localhost:5173",
@@ -30,4 +30,10 @@ export const bookRoutes = (app: any) => {
 
     // Rota para upload de imagens de livro (assumindo uma única imagem chamada "imagem")
     app.put("/uploads/:id", upload.single("imagem"), atualizarCapa);
+    
+    // Rota para deletar livro do acervo
+    app.delete("/remove/:id", removerLivro);
+
+    // Rota para adicionar livro ao acervo
+    app.post("/add", adicionarLivro);
 }

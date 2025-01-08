@@ -1,5 +1,5 @@
 import fs from "fs";
-import { atualizaCapa, getListaLivros, getLivroPorID } from "../models/bookModels.ts";
+import { atualizaCapa, getListaLivros, getLivroPorID, removeLivroPorID, postaLivro } from "../models/bookModels.ts";
 
 export async function listarLivros(req: any, res: any) {
     const listaLivros = await getListaLivros();
@@ -10,6 +10,18 @@ export async function obterLivro(req: any, res: any) {
     const idLivro: string = req.params.id;
     const livro = await getLivroPorID(idLivro);
     res.status(200).json(livro);
+}
+
+export async function removerLivro(req: any, res: any) {
+    const idLivro: string = req.params.id;
+    const livro = await removeLivroPorID(idLivro);
+    res.status(200).json(livro);
+}
+
+export async function adicionarLivro(req: any, res: any) {
+    const bookData = req.body;
+    const post = await postaLivro(bookData);
+    res.status(200).json(post);
 }
 
 export async function atualizarCapa(req: any, res: any) {

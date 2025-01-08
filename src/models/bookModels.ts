@@ -1,6 +1,7 @@
 import "dotenv/config";
 import { ObjectId } from "mongodb";
 import { conectarAoBanco } from "../config/dbconfig.ts";
+import { Ibook } from "../types/bookInterface.ts";
 
 // conecta ao banco de dados MongoDB
 let client: any;
@@ -36,6 +37,19 @@ export async function atualizaCapa(id: string, livro: any) {
     const colecao = database.collection("livros");
     const objID = ObjectId.createFromHexString(id);
     return colecao.updateOne({_id: new ObjectId(objID)}, {$set: livro});
+}
+
+export async function removeLivroPorID(id: string) {
+    const database = client.db("acervo-djb");
+    const colecao = database.collection("livros");
+    const objID = new ObjectId(id);
+    return colecao.deleteOne({ _id: objID });
+}
+
+export async function postaLivro(bookData: Ibook) {
+    const database = client.db("acervo-djb");
+    const colecao = database.collection("livros");
+    return colecao.insertOne(bookData);
 }
 
 initDatabase();
