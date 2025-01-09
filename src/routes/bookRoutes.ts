@@ -1,10 +1,11 @@
 import express from "express";
 import cors from "cors";
 import multer from "multer";
+import "dotenv/config";
 import { listarLivros, obterLivro, atualizarCapa, removerLivro, adicionarLivro } from "../controllers/bookControlers.ts";
 
 const corsOptions = {
-    origin: "http://localhost:5173",
+    origin: process.env.ORIGIN_REQUEST,
     optionsSuccessStatus: 200
 }
 
