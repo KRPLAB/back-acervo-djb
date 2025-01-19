@@ -1,5 +1,5 @@
 export interface Ibook {
-    Registro: string;
+    registro: string;
     data: string;
     autor: string;
     titulo: string;

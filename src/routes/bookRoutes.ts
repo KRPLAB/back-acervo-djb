@@ -2,7 +2,7 @@ import express from "express";
 import cors from "cors";
 import multer from "multer";
 import "dotenv/config";
-import { listarLivros, obterLivro, atualizarCapa, removerLivro, adicionarLivro } from "../controllers/bookControlers.ts";
+import { listarLivros, obterLivro, atualizarCapa, removerLivro, adicionarLivro, atualizarLivro } from "../controllers/bookControlers.ts";
 
 const corsOptions = {
     origin: process.env.ORIGIN_REQUEST,
@@ -37,4 +37,7 @@ export const bookRoutes = (app: any) => {
 
     // Rota para adicionar livro ao acervo
     app.post("/add", adicionarLivro);
+
+    // Rota para atualizar informações de livro no acervo
+    app.put("/update/:id", atualizarLivro);
 }

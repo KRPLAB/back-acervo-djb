@@ -52,4 +52,11 @@ export async function postaLivro(bookData: Ibook) {
     return colecao.insertOne(bookData);
 }
 
+export async function modificaLivro(id: string, bookData: Ibook) {
+    const database = client.db("acervo-djb");
+    const colecao = database.collection("livros");
+    const objID = ObjectId.createFromHexString(id);
+    return colecao.updateOne({_id: new ObjectId(objID)}, {$set: bookData});
+}
+
 initDatabase();

@@ -1,5 +1,5 @@
 import fs from "fs";
-import { atualizaCapa, getListaLivros, getLivroPorID, removeLivroPorID, postaLivro } from "../models/bookModels.ts";
+import { atualizaCapa, getListaLivros, getLivroPorID, removeLivroPorID, postaLivro, modificaLivro } from "../models/bookModels.ts";
 
 export async function listarLivros(req: any, res: any) {
     const listaLivros = await getListaLivros();
@@ -48,4 +48,11 @@ export async function atualizarCapa(req: any, res: any) {
         console.error(erro.message);
         res.status(500).json({ "Erro": "Falha na requisição" });
     }
+}
+
+export async function atualizarLivro(req: any, res: any) {
+    const idLivro: string = req.params.id;
+    const dadosAtualizados = req.body;
+    const put = await modificaLivro(idLivro, dadosAtualizados);
+    res.status(200).json(put);
 }
